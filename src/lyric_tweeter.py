@@ -178,7 +178,6 @@ class LyricTweeter:
 
         return False;
 
-
     @staticmethod
     def _specific_artist_in_text(artist: str, text: str) -> bool:
         """Checks if a specific artist of the track is in text."""
@@ -191,8 +190,6 @@ class LyricTweeter:
                 return True
 
         return False
-
-
 
     @staticmethod
     def _cut_text_to_tweet(text: str) -> str:

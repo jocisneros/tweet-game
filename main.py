@@ -1,6 +1,6 @@
 # main.py
 
-from lyric_tweeter import LyricTweeter
+from src.lyric_tweeter import LyricTweeter
 from sys import argv
 from time import sleep
 
