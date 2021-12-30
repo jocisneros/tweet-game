@@ -27,7 +27,7 @@ def write_bytes_to_cache(file_name: str, content: bytes) -> str:
     """Write bytes to a file in the cache directory."""
     src_dir = Path(__file__).parent.absolute();
 
-    file_path = f"{src_dir}\\cache\\{slugify(file_name, allow_unicode=True)}.jpeg";
+    file_path = f"{src_dir}\\{slugify(file_name, allow_unicode=True)}.jpeg";
 
     with open(file_path, "w+b") as file:
         file.write(content)
