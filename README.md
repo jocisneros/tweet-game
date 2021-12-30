@@ -37,6 +37,8 @@ Login or create an account [here](https://developer.twitter.com/).
 
 ### Write Keys to File
 
+Using the keys, secrets, and bearer collected from the different dev accounts, copy the data in the respective variables in **src/config.py**
+
 ### Run:
 
 `pip install -r requirements.txt`
@@ -48,4 +50,6 @@ Login or create an account [here](https://developer.twitter.com/).
     -DEBUG: Outputs debugging information (api responses, state changes, etc.)
     -CLEAR: Clears the timeline of the bot, removing all tweets and replies.
     -WT=NUM: Defines the time to wait when checking for replies to the lyric tweet.
+    -U: Actives User Control Mode, allowing the user to control the number of times the program runs.
+    -LC=NUM: Defines the number of times the program should run.
 

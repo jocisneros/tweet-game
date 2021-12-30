@@ -20,9 +20,11 @@ def init_game(tweeter: LyricTweeter, wait_time: int, debug=False) -> None:
 
 
 def main(args: list[str]) -> None:
-    # Initialize program arguments
+    # Initialize program arguments.
     debug, do_clear, wait_time = False, False, None;
+    loop_count, user_control = 1, False;
 
+    # Check command-line arguments.
     for arg in args:
         if arg == "-DEBUG":
             debug = True;
@@ -32,24 +34,40 @@ def main(args: list[str]) -> None:
             try:
                 wait_time = int(arg[4:]);
                 if wait_time <= 0:
-                    print("Error: Wait time must be a positive number.")
+                    print("Error: Wait time must be a positive number.");
                     return;
             except ValueError:
-                print("Error: Wait time must be provided in the format '-WT=<integer>'");
+                print("Error: Wait time must be provided in the format '-WT=NUM'");
                 return;
-
-    lyric_tweeter = LyricTweeter(debug);
+        elif arg.startswith("-LC="):
+            try:
+                loop_count = int(arg[4:]);
+                if loop_count <= 0:
+                    print("Error: Loop count must be a positive number.");
+                    return;
+            except ValueError:
+                print("Error: Loop count must be provided in the format: '-LC=NUM");
+                return;
+        elif arg == "-U":
+            user_control = True;
 
     if do_clear:
-        lyric_tweeter._clear_timeline();
+        LyricTweeter()._clear_timeline();
 
-    init_game(lyric_tweeter, wait_time=wait_time, debug=debug);
+    if user_control:
+        print("User Control Mode: Enter 'q' to exit program.")
+
+        while True:
+            init_game(LyricTweeter(debug), wait_time=wait_time, debug=debug);
+            if input("Run Again?") == "q":
+                break;
+
+    else:
+        for _ in range(loop_count):
+            init_game(LyricTweeter(debug), wait_time=wait_time, debug=debug);
+
     return;
 
 
 if __name__ == "__main__":
-    while 1:
-        main(argv)
-        i = input("NEXT GAME?")
-        if i == 'q':
-            break;
+    main(argv);
